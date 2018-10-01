@@ -1,0 +1,81 @@
+O ESP8266
+
+1- Introdução?
+	1.1 Sinal digital 
+	1.2 Memória (RAM, EEPROM, Flash)
+	1.3 Microcontrolador (Interface, memória/registradores, processador)
+	1.4 Wi-Fi 
+
+2- ESP8266
+	2.0 O que é? Pra que usar?
+	2.1 Especificações (pinos analógicos, digitais, pwm)
+	2.2 Comunicação (UART, SPI, I2C, Wi-Fi) 
+	2.3 SPIFFS
+	2.4 Interrupção
+	2.5 Consumo de energia
+	2.6 Tipos de boot
+	2.7 Software (Lua, C++, Python)
+
+3- Aplicações
+	3.1 Sistema de casa
+
+4- Referências
+	4.1 'Livro'
+	4.2 Datasheet (pegar link)
+	4.3 github (https://github.com/GabrielMMelo/esp8266) Beeeeem porquinho	
+https://arduino-esp8266.readthedocs.io/en/2.4.1/
+
+O ESP8266 é um microcontrolador de 32-bits com WiFi (suporte a 802.11 b/g/n/e/i) integrado desenvolvido pela Espressif Systems surgido, em meados de 2014, para suprir a contínua demanda por uma plataforma de baixo consumo energético, compacta e de desempenho confiável na industria de IoT.
+
+Com um completo e autônomo sistema de conexão WiFi, o ESP8266 pode tanto desempenhar uma aplicação standalone, em modo AP, ou um se conectar a um host, em modo STA*. Pode ainda ser aplicado a qualquer microcontrolador como um adaptador WiFi através de interfaces SPI, I2C e UART. 
+*Conta ainda com modo AP_STA.
+
+Assim como a maioria dos modelos Arduino, o ESP possui GPIOs (Pinos de entrada e saída de propósito geral) e suporte a PWM (Modulação por largura de pulso). O upload do firmware é feito também pela UART (RX/TX), porém o ESP8266 conta com upload OTA (over-the-air), que é a atualização do firmware (gravação) através de uma rede.   
+
+ARDUINO X ESP8266
+                          ARDUINO (atmega328p)                   ESP8266-01
+
+    
+cpu clock                        16MHz to 20MHz     |      80MHz (soft overclock para 160MHz)
+Operating Voltage Range             1.8 to 5.5V     |           2.5 to 3.6V
+RAM                                     2kB         |          ~50kB
+Flash size (Program memory)             32kB        |               512kB
+EEPROM                                  1kB         |           spiffs
+
+GPIOS:
+
+ESP8266 possui 17 pinos GPIO que podem assumir varias funções através da devida programação de seus registradores. Cada um dos pinos pode ser configurado com pull-up ou pull-down interno e também alta impedância. Possui um pino ADC, TOUT(9), de resolução de 1024 bits, porém sua alimentação deve ser limitada de 0 a 1V.
+
+SOFTWARE:
+
+O firmware de fábrica traz, por default, o conjunto de instruções AT (PDF), porém é possível realizar o upload de outros firmwares para programação em linguagens mais comuns como o nodeMCU (LUA) e o micropython (Python). Ambos os firmwares baseam em um sistema interno de arquivos, com um arquivo "main" executado no boot e também possuem sua propria biblioteca que é atualizada por suas comunidades. 
+Entretanto, a Arduino IDE possui, atualmente, suporte ao ESP8266, tornando possível a programação em Arduino (C++), utilizando, inclusive, algumas bibliotecas do mesmo sem quaisquer alterações.
+
+Modos de operação:  GPIO0       GPIO2       GPIO15
+UART program         LOW        HIGH        LOW
+Flash boot          HIGH        HIGH        LOW
+boot(SD)             x           x          HIGH
+
+I2C:
+    I2C (Inter-integrated Circuit) é um protocolo de comunicação entre dispositivos que baseia-se em um barramento de apenas duas vias: SDA (Serial Data) por onde são transmitidos e recebidos os dados e SCL(Serial Clock) que dita a temporização do tráfego das informações. O grande diferencial do protocolo é que são permitidos, teoricamente, até 127 dispositivos distintos comunicando através de um mesmo barramento I2C.
+    O ESP8266 possui suporte a interface I2C, tanto como Master quanto Slave, para comunicação com outros microcontroladores e outros equipamentos perifericos como sensores. 
+                    Pino GPIO02(14) -> SDA
+                         MTMS(9)    -> SCL
+
+-Interrupção externa
+        Interrupções são eventos ou condições que levam o microcontrolador a pausar a execução de uma tarefa em andamento, executar outra temporariamente e, então, retornar para a tarefa inicial.
+        Com exceção do pino GPIO16(8), todas as demais GPIOs do ESP8266 possuem funcionalidade de interrupção externa.
+        
+        attachInterrupt(pinoDeInterrupcao, funcao, MODO); // Onde MODO pode assumir RISING, CHANGE ou FALLING
+        detachInterrupt()
+
+-Modos de Consumo de Energia
+        Modem-Sleep= Modo usado em aplicações que requerem a CPU funcionando, como em aplicações com PWM e I2S. "Desliga" o circuito do Modem Wi-Fi enquanto mantiver uma conexão Wi-Fi sem transmissão de dados. Consumo médio: 15mA.
+        Light-Sleep: Durante o modo, a CPU pode ser suspendida em aplicações como uma interruptor Wi-Fi. Sem haver transmissão de dados, a o circuito do Modem Wi-Fi pode ser desligado e a CPU suspendida para economia de consumo de energia. Consumo médio: 0.9mA.
+        Deep-Sleep: Durante o modo, Wi-Fi é totalmente desligado. Para aplicações onde existam longos intervalos de tempo sem transmissão de dados. Por exemplo, o monitoramento da temperatura ambiente, lendo dados durante um período, "dormindo" por outro período e "acordando" para reconectar a um ponto de acesso. Consumo médio: 20μA.
+
+-USB to UART converters
+        O ESP8266 não possui, nativamente, suporte para comunicação USB, porém existem conversores que facilitam a comunicação entre o microcontrolador e um PC para realização do upload do programa, por exemplo. 
+
+É possível ainda utilizar de dispositivos que já possuam um conversor interno para realizar o upload, como o Arduino UNO. Interligando os pinos UART dos dois dispositivos (TX(ESP)->RX(Arduino) e RX(ESP)->TX(Arduino)* é possível realizar a comunicação do ESP8266 com um PC através da interface USB do Arduino.
+*IMPORTANTE: vale lembrar que a faixa de tensão de operação do ESP8266 é de 2.5 a 3.6V, sendo necessário então um divisor de tensão do TX (Arduino) para o RX (ESP8266).
