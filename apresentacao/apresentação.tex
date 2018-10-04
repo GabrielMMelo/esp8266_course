@@ -126,6 +126,7 @@ height=6cm,
 
 \begin{frame}{Figures}
   \frametitle{Wi-Fi}
+  modos sta e ap (e o ap\_sta)
 \end{frame}
 
 \section{ESP8266}
@@ -164,9 +165,16 @@ height=6cm,
 
 \begin{frame}{Software}
   \frametitle{Software}
-  create a virtualenv here (esp8266-esptool)
-  pip install esptool -> for upload to esp8266 
-  ~  pip install rshell -> it's a interface terminal to access esp files ~
+
+  - NodeMCU (LUA)
+
+  - Arduino core (C++)
+
+  - Micropython (Python)
+    - Vantagens: desenvolvimento mais rápido, modularizado, código mais limpo, framework mais otimizado e pacote like pip (upip).
+    - Desvantagem: não é compilado
+
+  Python3.6
 
   Connect ESP to usb and make sure that your device has read and write permissions with 
   chmod 776 /dev/ttyS{número do seu device}
@@ -175,12 +183,40 @@ height=6cm,
   descobri no gerenciador de dispositivos do Windows, no caso na porta COM3 (O número da porta pode alterar por alguns motivos a cada nova conexão)
   Alterar a porta pode resolver os problemas de conexão 
 
+  create a virtualenv here (esp8266-esptool)
+
+  pip install esptool -> for flash to esp8266 
+
+  esptool.py -p /dev/ttyS# -b 115200 erase\_flash -> para limpar a flash
+
+  esptool.py -p /dev/ttyS# -b 115200 write\_flash --flash\_size=detect -fm qio 0 nome\_do\_binario.bin -> para gravar a imagem do micropython
+
+  http://micropython.org/download#esp8266
+
+  Utilizar o binário da daily builds (sem WebREPL inicializado por padrão)
+  esp8266-20180718-v1.9.4-272-g46091b8a.bin 
+
   conectar no REPL (interface com python) com o picocom
+  picocom /dev/ttyS# -b115200 (tudo junto)
 
   criar outra virtualenv aqui (esp8266-mpfshell)
+  ~  pip install rshell -> it's a interface terminal to access esp files ~
   https://github.com/wendlers/mpfshell mpfshell ao invés do rshell
   pip install -r requirements.txt
   alterar o pyserial para a versão 3.1 (pip install pyserial==3.1)
+  pip install mpfshell
+
+
+  mpfshell
+
+  mpfshell> open ttyS#
+  mpfshell> ls
+  mpfshell> put file.py (upload file)
+  mpfshell> get file.py (download file)
+
+  *boot.py script executado no boot do esp (possui configurações iniciais da placa, principalmente sobre comunicação)
+
+  *main.py script executado após o boot.py. Inicializa a árvore de execução do projeto
 
   Teste de preparação Instalação do SDK (esp-open-sdk) para programação nativa em czão
   git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
@@ -206,6 +242,7 @@ height=6cm,
 
 \begin{frame}{Sistema de ponto}
   \frametitle{Sistema de ponto}
+  https://github.com/wendlers/micropython-mfrc522
 \end{frame}
 
 \begin{frame}{Sistema de controle residencial}
