@@ -1,2 +1,0 @@
-\beamer@sectionintoc {1}{Elements}{4}{0}{1}
-\beamer@sectionintoc {2}{Conclusion}{18}{0}{2}

@@ -171,8 +171,28 @@ height=6cm,
   - Arduino core (C++)
 
   - Micropython (Python)
-    - Vantagens: desenvolvimento mais rápido, modularizado, código mais limpo, framework mais otimizado e pacote like pip (upip).
-    - Desvantagem: não é compilado
+    - Vantagens: desenvolvimento mais rápido, modularizado, código mais limpo e pacote like pip (upip).
+
+    - Desvantagem: não é compilado MAS... 
+      
+    **imagem da fita de memória do esp**
+
+    Memória de programa:
+      - 1M de FlashROM
+      - 64K de BootROM (que armazena um bootloader, o RTOS de fato e uma BIBLIOTECA COM VÁRIAS ROTINAS DE SUPORTE)
+
+    Memória de dados:
+      - 96K de DataRAM (-16K do RTOS, -20K estáticos do Wi-Fi, -20k de dinâmico, -~10K de constantes)
+      * Constantes são armazenadas na RAM pois a ROM é alocada por blocos de 32-bits e, desta forma, o acesso byte a byte de uma string, por exemplo, poderá gerar um erro
+      - 32K de InstRAM (+ 32K da FlashROM, mas a leitura é cerca de 10x mais lenta)
+
+      Acontece que grande parte da InstRAM já é usada por operações de tempo real (como handling Wi-Fi) e por ROTINAS usadas frequentemente.
+      Essas rotinas, em muitos casos, já se encontram no BootROM. O Micropython possui um alto valor de test coverage quanto a isso, otimizando o uso da InstRAM
+
+  fonte: https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/posts/1501224 
+    
+
+
 
   Python3.6
 
