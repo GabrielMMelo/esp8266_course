@@ -21,31 +21,29 @@
 \subtitle{}
 \date{\today}
 \author{Gabriel Melo}
-\institute{Emakers Júnior
-\includegraphics[width=50pt]{images/emakersjr_logo.jpg}}
+\institute{
+  \vspace{20pt}
+  \begin{center}
+    \includegraphics[width=70pt]{images/emakersjr_logo.jpg}
+  \end{center}
+}
+
 \begin{document}
 
 \maketitle
 
 
 \begin{frame}[fragile]
-  \frametitle{mtheme}
+  \frametitle{ESP8266: Uma introdução ao IoT}
 
-  Este material é um resumo do livro homônimo, disponível em: \href{https://github.com/GabrielMMelo/esp8266\_course}{ \textit{ESP8266: Uma introdução ao IoT}
-  } por Gabriel Melo.
+  Este material é um complemento do livro homônimo, disponível, junto com conteúdos de apoio do curso, em: \href{https://github.com/GabrielMMelo/esp8266\_course}{ \textit{ESP8266: Uma introdução ao IoT}}
+  , por Gabriel Melo.
 
+  \begin{center}
+    \vspace{20pt}
+    \includegraphics[width=80pt]{images/github.png}\\
+  \end{center}
 \end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Sections}
-  Sections group slides of the same topic
-
-  \begin{minted}[fontsize=\small]{latex}
-    \section{Elements}
-  \end{minted}
-
-\end{frame}
-
 \section{Introdução}
 
 \begin{frame}[fragile]
@@ -117,12 +115,26 @@ height=6cm,
 
 \begin{frame}{Descriptions}
 \frametitle{Microcontrolador}
-  \includegraphics[width=30em]{images/Microcontrolador.jpg}
+  \hfill\includegraphics[width=30em]{images/Microcontrolador.jpg}\hspace*{\fill}
+
 \end{frame}
 
 \begin{frame}{Lists}
 \frametitle{Memória}
 \end{frame}
+
+\begin{frame}{Lists}
+\frametitle{Periféricos de entrada e saída}
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      Sensores
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      Atuadores
+    \end{column}
+  \end{columns}
+\end{frame}
+
 
 \begin{frame}{Figures}
   \frametitle{Wi-Fi}
@@ -149,6 +161,12 @@ height=6cm,
 
 \begin{frame}{SPIFFS}
   \frametitle{SPIFFS}
+
+  *boot.py script executado no boot do esp (possui configurações iniciais da placa, principalmente sobre comunicação)
+
+  *main.py script executado após o boot.py. Inicializa a árvore de execução do projeto
+
+
 \end{frame}
 
 \begin{frame}{Interrupção}
@@ -165,18 +183,81 @@ height=6cm,
 
 \begin{frame}{Software}
   \frametitle{Software}
+  \begin{columns}
+        \begin{column}{0.48\textwidth}
+          \begin{center}
+            \includegraphics[width=80pt]{images/nodemcu.png}\\
+            \textbf{NodeMCU firmware}\\
+            \textit{Lua}\\
+            \begin{itemize}
+              \item Linguagem interpretada
+              \item Padrão das placas NodeMCU
+              \item Comunidade média
+            \end{itemize}
+          \end{center}
 
-  - NodeMCU (LUA)
 
-  - Arduino core (C++)
+        \end{column}
+        \begin{column}{0.48\textwidth}
+          \begin{center}
+            \includegraphics[height=80pt]{images/arduino.png}\\
+            \textbf{Arduino core firmware}\\
+            \textit{Arduino/C++}\\
+            \begin{itemize}
+              \item Linguagem compilada
+              \item Utilização da Arduino IDE
+              \item Comunidade gigante
+            \end{itemize}
+          \end{center}
+        \end{column}
+  \end{columns}
 
-  - Micropython (Python)
-    - Vantagens: desenvolvimento mais rápido, modularizado, código mais limpo e pacote like pip (upip).
+\end{frame}
 
-    - Desvantagem: não é compilado MAS... 
-      
-    **imagem da fita de memória do esp**
+\begin{frame}{Software}
+  \frametitle{Software}
+    \begin{center}
+      \includegraphics[width=120pt]{images/micropython.png}\\
+      \textbf{Micropython}\\
+      \textit{Python}\\
+      \begin{itemize}
+        \item Linguagem interpretada
+        \item Linguagem acessível a iniciantes e poderosa para experientes
+        \item Comunidade gigante
+        \item \textit{upip} (versão micro do \textit{pip})
+        \item Otimização da memória RAM (???)
+      \end{itemize}
+    \end{center}
+\end{frame}
 
+\begin{frame}{Micropython - Otimização da RAM}
+  \frametitle{Micropython - Otimização da RAM}
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \begin{center}
+        \includegraphics[width=95pt]{images/mem-mapping.png}\\
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{center}
+        \begin{itemize}
+          \item Limitação da \textbf{InstRAM} \vspace{5pt}
+          \item \textbf{BootRAM} possui uma biblioteca para rotinas de suporte\vspace{5pt}
+          \item Essa biblioteca pode substituir instruções presentes na \textbf{InstRAM}\vspace{5pt}
+          \item \textbf{Micropython} faz uso disso e possui um Test coverage de \textbf{92\%}\vspace{5pt}
+        \end{itemize}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Micropython - Instalação e Primeiros passos}
+  Instruções sobre instalação, bem como a preparação do ambiente, ferramentas, dicas, exemplos e documentação externa estão disponíveis no próprio repositório remoto do material: \\\\
+  \begin{center}
+    https://github.com/GabrielMMelo/esp8266\_course
+  \end{center}
+\end{frame}
     Memória de programa:
       - 1M de FlashROM
       - 64K de BootROM (que armazena um bootloader, o RTOS de fato e uma BIBLIOTECA COM VÁRIAS ROTINAS DE SUPORTE)
@@ -189,35 +270,12 @@ height=6cm,
       Acontece que grande parte da InstRAM já é usada por operações de tempo real (como handling Wi-Fi) e por ROTINAS usadas frequentemente.
       Essas rotinas, em muitos casos, já se encontram no BootROM. O Micropython possui um alto valor de test coverage quanto a isso, otimizando o uso da InstRAM
 
-  fonte: https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/posts/1501224 
+  fonte: 
     
 
 
-
-  Python3.6
-
-  Connect ESP to usb and make sure that your device has read and write permissions with 
-  chmod 776 /dev/ttyS{número do seu device}
-
-  por exemplo: /dev/ttyS3
-  descobri no gerenciador de dispositivos do Windows, no caso na porta COM3 (O número da porta pode alterar por alguns motivos a cada nova conexão)
-  Alterar a porta pode resolver os problemas de conexão 
-
-  create a virtualenv here (esp8266-esptool)
-
-  pip install esptool -> for flash to esp8266 
-
-  esptool.py -p /dev/ttyS# -b 115200 erase\_flash -> para limpar a flash
-
-  esptool.py -p /dev/ttyS# -b 115200 write\_flash --flash\_size=detect -fm qio 0 nome\_do\_binario.bin -> para gravar a imagem do micropython
-
-  http://micropython.org/download#esp8266
-
-  Utilizar o binário da daily builds (sem WebREPL inicializado por padrão)
-  esp8266-20180718-v1.9.4-272-g46091b8a.bin 
-
   conectar no REPL (interface com python) com o picocom
-  picocom /dev/ttyS# -b115200 (tudo junto)
+  picocom /dev/ttyS{porta\_com} -b115200 (tudo junto)
 
   criar outra virtualenv aqui (esp8266-mpfshell)
   ~  pip install rshell -> it's a interface terminal to access esp files ~
@@ -229,15 +287,10 @@ height=6cm,
 
   mpfshell
 
-  mpfshell> open ttyS#
+  mpfshell> open ttyS{porta\_com}
   mpfshell> ls
   mpfshell> put file.py (upload file)
   mpfshell> get file.py (download file)
-
-  *boot.py script executado no boot do esp (possui configurações iniciais da placa, principalmente sobre comunicação)
-
-  *main.py script executado após o boot.py. Inicializa a árvore de execução do projeto
-
   Teste de preparação Instalação do SDK (esp-open-sdk) para programação nativa em czão
   git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
   sudo apt-get install make unrar-free autoconf automake libtool gcc g++ gperf \
@@ -248,7 +301,6 @@ height=6cm,
 
   (use esp-open-rtos)
 
-\end{frame}
 
 \section{Aplicações}
 
@@ -267,31 +319,40 @@ height=6cm,
 
 \begin{frame}{Sistema de controle residencial}
   \frametitle{Sistema de controle residencial}
-  \includegraphics[width=300pt]{images/iot-server_login.png}
+
+    \hfill\includegraphics[width=300pt]{images/iot-server_login.png}\hspace*{\fill}
 \end{frame}
 
 \begin{frame}{Sistema de controle residencial}
   \frametitle{Sistema de controle residencial}
-  \includegraphics[width=300pt]{images/iot-server_dash1.png}
+  \begin{center}
+    \includegraphics[width=300pt]{images/iot-server_dash1.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Sistema de controle residencial}
   \frametitle{Sistema de controle residencial}
-  \includegraphics[width=300pt]{images/iot-server_dash2.png}
+  \begin{center}
+    \includegraphics[width=300pt]{images/iot-server_dash2.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Sistema de controle residencial}
   \frametitle{Sistema de controle residencial}
-  \includegraphics[width=300pt]{images/iot-server_remotecontrol.png}
+  \begin{center}
+    \includegraphics[width=300pt]{images/iot-server_remotecontrol.png}
+  \end{center}
 \end{frame}
 \section{Referências}
 
 \begin{frame}{Summary}
   \frametitle{Referências}
+  \vspace{15pt}
   \begin{itemize}
+    \item \textbf{ESP8266: Uma introdução ao IoT}, disponível em: https://github.com/GabrielMMelo/esp8266\_course \vspace{15pt}
     \item \textbf{Documentação Micropython}: https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html \vspace{5pt}
-    \item \textbf{Documentação Core Arduino/Esp8266}: https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html \vspace{5pt}
-    \item \textbf{ESP8266: Uma introdução ao IoT}, disponível em: https://github.com/GabrielMMelo/esp8266\_course
+    \item \textbf{Pacotes upip} (nem todos possuem suporte para port ESP8266): https://pypi.org/search/?q=micropython- \vspace{15pt}
+    \item \textbf{Discussão acerca do uso do Micropython com ESP8266}: https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/posts/1501224 \vspace{5pt}
   \end{itemize}
 \end{frame}
 
