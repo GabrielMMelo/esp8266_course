@@ -1,6 +1,7 @@
 import btree
 
-#TODO Clean the code!
+#TODO Clean the code (avoid repetitions?)!
+#TODO Clean blank lines (it's memory limited device) 
 
 # First, we need to open a stream which holds a database
 # This is usually a file, but can be in-memory database
