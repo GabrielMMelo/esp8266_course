@@ -7,3 +7,4 @@ import gc
 #import webrepl
 #webrepl.start()
 gc.collect()
+machine.freq(160000000)
