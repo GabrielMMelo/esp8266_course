@@ -45,7 +45,7 @@ ls /dev/ | grep tty{porta_com}
 
 >  A porta COM padrão é `USB0`, i.e. `/dev/ttyUSB0`
 
-> Não é commum mas as portas podem se alterar a cada nova conexão estabelecida.
+> Não é comum mas as portas podem se alterar a cada nova conexão estabelecida.
 
 > **DICA**: Por usar o Linux como subsistema, identifiquei a porta através do Gerenciador de dispositivos do Windows.
 
@@ -125,26 +125,47 @@ pip install mpfshell
 
 #### Comandos básicos
 
-Abre dispositivo na porta especificada
-- open ttyS{porta\_com}
+- Abre dispositivo na porta especificada
+
+```
+open ttyS{porta\_com}
+```
   
-Lista arquivos/diretórios do diretório corrente do seu computador
-- ls
+- Lista arquivos/diretórios do diretório corrente do seu computador
 
-Lista arquivos/diretórios do diretório corrente do seu computador
-- lls
+```
+ ls
+```
 
-Upload de arquivo x.py para o dispositivo
-- put x.py
+- Lista arquivos/diretórios do diretório corrente do seu computador
 
-Download de arquivo x.py do dispositivo
-- get x.py
+```
+lls
+```
 
-Delete o arquivo x.py do dispositivo
-- rm x.py
+- Upload de arquivo x.py para o dispositivo
+
+```
+put x.py
+```
+
+- Download de arquivo x.py do dispositivo
+
+```
+get x.py
+```
+
+- Delete o arquivo x.py do dispositivo
+
+```
+rm x.py
+```
 
 Inicia o `REPL`
-- repl
+
+```
+repl
+```
 
 ## SDK (_esp-open-sdk_)
 ### Instalação e preparação do ambiente
