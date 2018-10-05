@@ -4,7 +4,7 @@
 
 ### Instalação/Preparação (Windows WSL Ubuntu 18.04.1 LTS~)
   
-  Tenha certeza de que você possui instalado
+1.  Tenha certeza de que você possui instalado
 - Python3.6
 ```
 python3 --version
@@ -21,92 +21,152 @@ sudo apt install python3-pip
 pip3 install virtualenv
 ```
 
-- virtualenvwrapper (optional)
+- virtualenvwrapper (opcional, mas facilita sua vida :) )
 ```
 pip 3 install virtualenvwrapper
 ```
 
-  Clone esse repositório
+2.  Clone esse repositório
 
 ```
 git clone https://github.com/GabrielMMelo/esp8266_course
 cd esp8266_course
 ```
 
-  Conecte o ESP8266, via usb, no seu computador.
+3.  Conecte o ESP8266, via usb, no seu computador.
 
-  Tenha certeza que o dispositivo está em **modo flash**.
+ > Tenha certeza que o dispositivo está em **modo flash**.
 
-  Confira se seu computador reconheceu o dispositivo:
+4.  Confira se seu computador reconheceu o dispositivo:
   
 ```
 ls /dev/ | grep tty{porta_com}
 ```
 
-  A porta COM padrão é `USB0`, i.e. `/dev/ttyUSB0`
+>  A porta COM padrão é `USB0`, i.e. `/dev/ttyUSB0`
 
 > Não é commum mas as portas podem se alterar a cada nova conexão estabelecida.
 
-  Dê permissões de leitura/escrita na porta:
+> **DICA**: Por usar o Linux como subsistema, identifiquei a porta através do Gerenciador de dispositivos do Windows.
+
+5.  Dê permissões de leitura/escrita na porta:
 
 ```
 sudo chmod 776 /dev/tty{porta_com}
 ```
 
-  descobri no gerenciador de dispositivos do Windows, no caso na porta COM3 (O número da porta pode alterar por alguns motivos a cada nova conexão)
-  Alterar a porta pode resolver os problemas de conexão 
-
-  Crie uma virtualenv aqui 
+6.  Crie uma virtualenv aqui 
 ```
-  mkvirtualenv esp8266    #se estiver usando virtualenvwrapper
+mkvirtualenv esp8266    #se estiver usando virtualenvwrapper
 ```
 
-  Então instale a ferramenta esptool.py para upload e reset do firmware
+7.  Então instale a ferramenta esptool.py para upload e reset do firmware
 
 ```
 pip install esptool
 ```
 
-  Realize um teste para ler o `MAC ADDRESS` do dispositivo
+8.  Realize um teste para ler o `MAC ADDRESS` do dispositivo
 
 ```
 esptool.py -p /dev/tty{porta_com} -b 115200 read_mac
 ```
 
-  Caso o teste não seja bem sucedido, revise a porta utilizada e o procedimento de instalação
+> Caso o teste não seja bem sucedido, revise a porta utilizada e o procedimento de instalação
 
-  Formate a FlashROM do dispositivo
+9.  Formate a FlashROM do dispositivo
 
 ```
 esptool.py -p /dev/ttyS{porta_com} -b 115200 erase\_flash -> para limpar a flash
 ```
 
-  Instale o firmware (demais imagens podem ser acessadas em: http://micropython.org/download#esp8266)
+10. Instale o firmware (demais imagens podem ser acessadas em: http://micropython.org/download#esp8266)
   
 ```
   esptool.py -p /dev/ttyS# -b 115200 write\_flash --flash\_size=detect -fm qio 0 bin/esp8266-20180718-v1.9.4-272-g46091b8a.bin
 ```
 
-  conectar no REPL (interface com python) com o picocom
-  picocom /dev/ttyS# -b115200 (tudo junto)
+> É altamente recomendado baixar o binário diretamente da [fonte oficial] (http://micropython.org/download#esp8266)
 
-  criar outra virtualenv aqui (esp8266-mpfshell)
-  ~  pip install rshell -> it's a interface terminal to access esp files ~
-  https://github.com/wendlers/mpfshell mpfshell ao invés do rshell
-  pip install -r requirements.txt
-  alterar o pyserial para a versão 3.1 (pip install pyserial==3.1)
-  pip install mpfshell
+11.  Criar outra virtualenv aqui
 
+```
+mkvirtualenv esp8266-mpfshell
+```
 
-  mpfshell
+12. Clone o projeto mpfshell
 
-  mpfshell> open ttyS#
-  mpfshell> ls
-  mpfshell> put file.py (upload file)
-  mpfshell> get file.py (download file)
+```
+git clone https://github.com/wendlers/mpfshell 
+cd mpfshell
+```
 
-  *boot.py script executado no boot do esp (possui configurações iniciais da placa, principalmente sobre comunicação)
+13. Instale as dependências
 
-  *main.py script executado após o boot.py. Inicializa a árvore de execução do projeto
+```
+pip install -r requirements.txt
+```
 
+14. Altere a versão do módulo `pyserial` para a `3.1`
 
+```
+pip install pyserial==3.1
+```
+
+15. Por fim, instale o mpfsheel
+
+```
+pip install mpfshell
+```
+
+### mpfshell
+  
+  É um explorador de arquivos, via shell, para dispositivos _ESP8266_ com Micropython. O módulo permite acesso ao `REPL`, que é um ambiente interativo de acesso ao Micropython.
+
+#### Comandos básicos
+
+Abre dispositivo na porta especificada
+- open ttyS{porta\_com}
+  
+Lista arquivos/diretórios do diretório corrente do seu computador
+- ls
+
+Lista arquivos/diretórios do diretório corrente do seu computador
+- lls
+
+Upload de arquivo x.py para o dispositivo
+- put x.py
+
+Download de arquivo x.py do dispositivo
+- get x.py
+
+Delete o arquivo x.py do dispositivo
+- rm x.py
+
+Inicia o `REPL`
+- repl
+
+## SDK (_esp-open-sdk_)
+### Instalação e preparação do ambiente
+1. Clone o repositório do projeto
+```
+git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+```
+
+2. Instale as dependências
+
+```
+sudo apt-get install make unrar-free autoconf automake libtool gcc g++ gperf \
+    flex bison texinfo gawk ncurses-dev libexpat-dev python-dev python python-serial \
+        sed git unzip bash help2man wget bzip2 libtool-bin
+```
+
+3. Construa o projeto (Deve levar de 40 ~ 60 minutos)
+
+```
+(sudo) make 
+```
+
+4. Defina xtensa-lx106-elf-gcc no seu `PATH`
+
+> O exato comando para fazê-lo será exibido ao final da construção do projeto
