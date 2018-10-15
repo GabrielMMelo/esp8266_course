@@ -44,6 +44,20 @@ RAM                                     2kB         |          ~50kB
 Flash size (Program memory)             32kB        |               512kB
 EEPROM                                  1kB         |           spiffs
 
+Memória de programa:
+  - 1M de FlashROM
+  - 64K de BootROM (que armazena um bootloader, o RTOS de fato e uma BIBLIOTECA COM VÁRIAS ROTINAS DE SUPORTE)
+
+Memória de dados:
+  - 96K de DataRAM (-16K do RTOS, -20K estáticos do Wi-Fi, -20k de dinâmico, -~10K de constantes)
+  * Constantes são armazenadas na RAM pois a ROM é alocada por blocos de 32-bits e, desta forma, o acesso byte a byte de uma string, por exemplo, poderá gerar um erro
+  - 32K de InstRAM (+ 32K da FlashROM, mas a leitura é cerca de 10x mais lenta)
+
+  Acontece que grande parte da InstRAM já é usada por operações de tempo real (como handling Wi-Fi) e por ROTINAS usadas frequentemente.
+  Essas rotinas, em muitos casos, já se encontram no BootROM. O Micropython possui um alto valor de test coverage quanto a isso, otimizando o uso da InstRAM
+
+
+
 GPIOS:
 
 ESP8266 possui 17 pinos GPIO que podem assumir varias funções através da devida programação de seus registradores. Cada um dos pinos pode ser configurado com pull-up ou pull-down interno e também alta impedância. Possui um pino ADC, TOUT(9), de resolução de 1024 bits, porém sua alimentação deve ser limitada de 0 a 1V.

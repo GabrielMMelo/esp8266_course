@@ -24,7 +24,7 @@
 \institute{
   \vspace{20pt}
   \begin{center}
-    \includegraphics[width=70pt]{images/emakersjr_logo.jpg}
+    \includegraphics[width=90pt]{images/emakersjr_logo.png}
   \end{center}
 }
 
@@ -45,11 +45,40 @@
   \end{center}
 \end{frame}
 \section{Introdução}
+\begin{frame}
+  \frametitle{Internet of Things}
+  \begin{center}
+    \includegraphics[width=270pt]{images/iot.png}\\
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sistemas embarcados}
+   \begin{center}
+    \includegraphics[width=270pt]{images/embedded.png}\\
+     \vspace{10pt}
+    \begin{columns}
+      \begin{column}{0.38\textwidth}
+      \begin{center}
+        \textbf{Consumo}
+      \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+      \begin{center}
+        \textbf{Memória}
+      \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+      \begin{center}
+        \textbf{Conectividade}
+      \end{center}
+      \end{column}
+    \end{columns}
+  \end{center}
+\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Sinal Analógico}
-
-  \begin{center}becomes\end{center}
 
   \begin{figure}[ht]
      \centering
@@ -84,8 +113,6 @@
 \begin{frame}[fragile]
 \frametitle{Sinal digital}
 
-\begin{center}becomes\end{center}
-
 \begin{figure}[ht]
 \centering
 \label{Sinal-Digital}
@@ -119,8 +146,54 @@ height=6cm,
 
 \end{frame}
 
+\iffalse
+\begin{frame}{Lists}
+\frametitle{CPU}
+  \begin{itemize}
+    \item Central processing unit
+    \item Executa, sequencialmente, instruções da \textbf{memória de programa}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Lists}
 \frametitle{Memória}
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \begin{center}
+          \textbf{Memória de Programa}
+            \begin{itemize}
+              \item Volátil
+              \item *ROM
+              \item \textbf{FlashROM}
+            \end{itemize}
+        \end{center}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{center}
+          \textbf{Memória de Dados}
+            \begin{itemize}
+              \item Não-volátil
+              \item RAM (Random access memory)
+              \item Endereço de registradores
+            \end{itemize}
+        \end{center}
+      \end{column}
+    \end{columns}
+\end{frame}
+\fi
+
+\begin{frame}{Lists}
+  \frametitle{Periféricos de entrada e saída}
+  \begin{center}
+    \textbf{GPIOs} \\
+    \textit{General purpose I/O}
+    \begin{itemize}
+      \item Entrada/saída
+      \item Digital/analógico
+      \item Interrupção
+    \end{itemize}
+    \includegraphics[width=230pt]{images/pins.png}\\
+  \end{center}
 \end{frame}
 
 \begin{frame}{Lists}
@@ -129,60 +202,177 @@ height=6cm,
     \begin{column}{0.48\textwidth}
       \begin{center}
         \textbf{Sensores}
+        \begin{itemize}
+          \item Temperatura
+          \item Inerciais (aceletômetro, etc.)
+          \item Leitores (RFID, biométrico, etc.)\\
+        \end{itemize}
+        \vspace{30pt}
+        \includegraphics[width=110pt]{images/sensors.png}\\
       \end{center}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{center}
         \textbf{Atuadores}
+        \begin{itemize}
+          \item Motor
+          \item Lâmpada/LED
+          \item Alto-falante\\
+        \end{itemize}
+        \vspace{30pt}
+        \includegraphics[width=110pt]{images/actuator.png}\\
       \end{center}
     \end{column}
   \end{columns}
-\end{frame}
-
-
-\begin{frame}{Figures}
-  \frametitle{Wi-Fi}
-  modos sta e ap (e o ap\_sta)
 \end{frame}
 
 \section{ESP8266}
 
 \begin{frame}{Summary}
   \frametitle{O que é?}
+  \begin{center}
+  \begin{itemize}
+    \item Microcontrolador de 32-bits
+    \item Modem Wi-Fi
+    \item Baixo custo
+    \item Comunidade ativa
+  \end{itemize}
+  \includegraphics[width=180pt]{images/espressif.png}\\
+  \end{center}
 \end{frame}
 
 \begin{frame}{Modelos}
   \frametitle{Modelos}
+  \begin{center}
+    \includegraphics[width=200pt]{images/esps.png}\\
+  \end{center}
 \end{frame}
 
 \begin{frame}{Animation}
   \frametitle{Especificações}
+  \begin{table}[]
+    \begin{tabular}{|l|l|l|}
+      \hline
+     & ESP-12           & ATMEGA-328p     \\ \hline
+     Arquitetura                                                      & 32-bits          & 8-bits          \\ \hline
+     Frequência                                                       & 80 $\sim$160 MHz & 16 $\sim$20 MHz \\ \hline
+     \begin{tabular}[c]{@{}l@{}}Tensão \\ \\ de operação\end{tabular} & 2.5 $\sim$3.6V   & 1.8 $\sim$5.5V  \\ \hline
+       \begin{tabular}[c]{@{}l@{}}Memória \\ \\ Flash\end{tabular}      & 1Mb $\sim$4Mb    & 32Kb            \\ \hline
+       \begin{tabular}[c]{@{}l@{}}Memória \\ \\ RAM\end{tabular}      & 15 $\sim$26Kb*    & 2Kb            \\ \hline
+         GPIOS                                                            & 18 (17/d e 1/a)  & 20 (14/d e 6/a) \\ \hline
+         Preço                                                            & \$8,79           & \$9,99          \\ \hline
+\end{tabular}
+  \end{table}
 \end{frame}
 
 \begin{frame}{Comunicação}
   \frametitle{Comunicação}
+  SPI
+  \begin{center}
+  
+  \includegraphics[width=130pt]{images/SPI.png}\\
+ \end{center}
+  UART
+ \begin{center}
+  \includegraphics[width=130pt]{images/uart.png}\\
+ \end{center}
+  I2C
+ \begin{center}
+  \includegraphics[width=130pt]{images/i2c.png}\\
+ \end{center}
 \end{frame}
 
-\begin{frame}{SPIFFS}
-  \frametitle{SPIFFS}
-
-  *boot.py script executado no boot do esp (possui configurações iniciais da placa, principalmente sobre comunicação)
-
-  *main.py script executado após o boot.py. Inicializa a árvore de execução do projeto
-
-
-\end{frame}
-
-\begin{frame}{Interrupção}
-  \frametitle{Interrupção}
+\begin{frame}{Figures}
+  \frametitle{Wi-Fi}
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \begin{center}
+        \textbf{STA}\\
+        \textit{Station}\\
+        \vspace{30pt}
+        \includegraphics[width=130pt]{images/sta.png}\\
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{center}
+        \textbf{AP}\\
+        \textit{Access point}\\
+        \vspace{30pt}
+        \includegraphics[width=130pt]{images/ap.png}\\
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Consumo de Energia}
   \frametitle{Consumo de Energia}
+
+    \begin{columns}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{Modem sleep}
+            \begin{itemize}
+              \item Suspensão do modem Wi-Fi
+              \item 15mA
+            \end{itemize}
+        \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{Light sleep}
+            \begin{itemize}
+              \item Suspensão do modem Wi-Fi e CPU
+              \item 0.9mA
+            \end{itemize}
+        \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{Deep sleep}
+            \begin{itemize}
+              \item Desabilitação do Wi-Fi e suspensão da CPU
+              \item 20$\mu$A
+            \end{itemize}
+        \end{center}
+      \end{column}
+    \end{columns}
+    \begin{center}
+      \vspace{20pt}
+      \includegraphics[width=170pt]{images/power.png}\\
+    \end{center}
 \end{frame}
 
 \begin{frame}{Tipos de boot}
   \frametitle{Tipos de boot}
+    \begin{columns}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{Flash Mode}
+            \begin{itemize}
+              \item 'Boota' pela FlashROM
+            \end{itemize}
+        \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{UART Mode}
+            \begin{itemize}
+              \item Não 'boota' pela FlashROM
+              \item Aguarda comunicação pela UART (TX/RX)
+            \end{itemize}
+        \end{center}
+      \end{column}
+      \begin{column}{0.38\textwidth}
+        \begin{center}
+          \textbf{SDIO Mode}
+            \begin{itemize}
+              \item 'Boota' pelo cartão SD
+            \end{itemize}
+        \end{center}
+      \end{column}
+    \end{columns}
+    \vspace{40pt}
+    \includegraphics[width=300pt]{images/boot-table.png}\\
 \end{frame}
 
 \begin{frame}{Software}
@@ -244,12 +434,13 @@ height=6cm,
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{center}
-        \begin{itemize}
+        \begin{enumerate}
           \item Limitação da \textbf{InstRAM} \vspace{5pt}
           \item \textbf{BootRAM} possui uma biblioteca para rotinas de suporte\vspace{5pt}
           \item Essa biblioteca pode substituir instruções presentes na \textbf{InstRAM}\vspace{5pt}
-          \item \textbf{Micropython} faz uso disso e possui um Test coverage de \textbf{92\%}\vspace{5pt}
-        \end{itemize}
+          \item Aparição de \textbf{bugs}\vspace{5pt}
+          \item \textbf{Micropython} faz bom uso disso e possui um Test coverage de \textbf{92\%}\vspace{5pt}
+        \end{enumerate}
       \end{center}
     \end{column}
   \end{columns}
@@ -262,63 +453,68 @@ height=6cm,
     https://github.com/GabrielMMelo/esp8266\_course
   \end{center}
 \end{frame}
-    Memória de programa:
-      - 1M de FlashROM
-      - 64K de BootROM (que armazena um bootloader, o RTOS de fato e uma BIBLIOTECA COM VÁRIAS ROTINAS DE SUPORTE)
 
-    Memória de dados:
-      - 96K de DataRAM (-16K do RTOS, -20K estáticos do Wi-Fi, -20k de dinâmico, -~10K de constantes)
-      * Constantes são armazenadas na RAM pois a ROM é alocada por blocos de 32-bits e, desta forma, o acesso byte a byte de uma string, por exemplo, poderá gerar um erro
-      - 32K de InstRAM (+ 32K da FlashROM, mas a leitura é cerca de 10x mais lenta)
+\begin{frame}{SPIFFS}
+  \frametitle{Micropython - Sistema de arquivos}
 
-      Acontece que grande parte da InstRAM já é usada por operações de tempo real (como handling Wi-Fi) e por ROTINAS usadas frequentemente.
-      Essas rotinas, em muitos casos, já se encontram no BootROM. O Micropython possui um alto valor de test coverage quanto a isso, otimizando o uso da InstRAM
-
-  fonte: 
-    
+  \begin{itemize}
+    \item Scripts de execução
+    \item Conteúdo para um Web Server
+    \item Arquivos de configuração
+    \item Banco de dados
 
 
-  conectar no REPL (interface com python) com o picocom
-  picocom /dev/ttyS{porta\_com} -b115200 (tudo junto)
+  \end{itemize}
+ 
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
 
-  criar outra virtualenv aqui (esp8266-mpfshell)
-  ~  pip install rshell -> it's a interface terminal to access esp files ~
-  https://github.com/wendlers/mpfshell mpfshell ao invés do rshell
-  pip install -r requirements.txt
-  alterar o pyserial para a versão 3.1 (pip install pyserial==3.1)
-  pip install mpfshell
+    \textbf{boot.py} \\
+    Script executado no boot do dispositivo \\
+    (possui configurações iniciais da placa, principalmente sobre comunicação)
 
+    \end{column}
+    \begin{column}{0.48\textwidth}
 
-  mpfshell
+    \textbf{main.py} \\
+    Script executado após boot.py \\
+    (inicializa a árvore de execução do projeto)
 
-  mpfshell> open ttyS{porta\_com}
-  mpfshell> ls
-  mpfshell> put file.py (upload file)
-  mpfshell> get file.py (download file)
-  Teste de preparação Instalação do SDK (esp-open-sdk) para programação nativa em czão
-  git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
-  sudo apt-get install make unrar-free autoconf automake libtool gcc g++ gperf \
-      flex bison texinfo gawk ncurses-dev libexpat-dev python-dev python python-serial \
-          sed git unzip bash help2man wget bzip2
-  sudo apt-get install libtool-bin
-  (sudo) make 
-
-  (use esp-open-rtos)
+    \end{column}
+  \end{columns}
+\end{frame}
 
 
 \section{Aplicações}
 
-\begin{frame}{Sistemas que envolvam acesso a rede \textit{(local ou internet)}}
-  \frametitle{Sistemas que envolvam acesso a rede \textit{(local ou internet)}}
-\end{frame}
-
-\begin{frame}{Monitor de sensores}
-  \frametitle{Monitor de sensores}
+\begin{frame}{Transmissão de informação por HTTP}
+  \frametitle{Transmissão de informação por HTTP}
+  \begin{center}
+    \includegraphics[width=190pt]{images/HTTP.png}\\
+  \end{center}
 \end{frame}
 
 \begin{frame}{Sistema de ponto}
   \frametitle{Sistema de ponto}
-  https://github.com/wendlers/micropython-mfrc522
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \begin{center}
+          \includegraphics[width=80pt]{images/rfid.png}\\
+          \vspace{20pt}
+          \textbf{RFID}
+       \end{center}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \vspace{-60pt}
+        \begin{center}
+          \includegraphics[width=150pt]{images/card-ufla.png}\\
+          \textbf{Cartão universitário}
+        \end{center}
+      \end{column}
+    \end{columns}
+
+ \vspace{40pt}
+ * https://github.com/wendlers/micropython-mfrc522
 \end{frame}
 
 \begin{frame}{Sistema de controle residencial}
@@ -347,6 +543,34 @@ height=6cm,
     \includegraphics[width=300pt]{images/iot-server_remotecontrol.png}
   \end{center}
 \end{frame}
+\section{Extras}
+
+\begin{frame}{Summary}
+  \frametitle{esp-open-sdk}
+  \vspace{15pt}
+  \begin{itemize}
+    \item Software development kit para ESP8266
+    \item Acesso as instruções da Xtensa lx106
+    \item Programação em C e assembly
+    \item \href{https://github.com/pfalcon/esp-open-sdk}{Projeto no GitHub}
+    \item *\href{https://github.com/SuperHouse/esp-open-rtos}{Complemento usando rtos}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ESP32}
+  \frametitle{ESP32}
+  \vspace{15pt}
+  \begin{itemize}
+    \item Dual-core
+    \item Wi-Fi + Bluetooth 4.0
+    \item 240MHz
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[width=200pt]{images/esp32.png}\\
+  \end{center}
+\end{frame}
+
 \section{Referências}
 
 \begin{frame}{Summary}
@@ -359,6 +583,8 @@ height=6cm,
     \item \textbf{Discussão acerca do uso do Micropython com ESP8266}: https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/posts/1501224 \vspace{5pt}
   \end{itemize}
 \end{frame}
+
+
 
 \plain{}{Perguntas?}
 
