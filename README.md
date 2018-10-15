@@ -34,13 +34,14 @@ export WORKON\_HOME=~/.virtualenvs
 source '/home/SEU_USUÁRIO/.local/bin/virtualenvwrapper.sh'
 ```
 
+> Certifique-se de alterar `SEU_USUARIO` pelo nome do seu usuário.
+
 - Dê um source no `.bashrc`
 
 ```
 source ~/.bashrc
 ```
 
-> Certifique-se de alterar `SEU_USUARIO` pelo nome do seu usuário.
 
 2.  Clone esse repositório
 
