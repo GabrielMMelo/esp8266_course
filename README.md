@@ -26,6 +26,22 @@ pip3 install virtualenv
 pip 3 install virtualenvwrapper
 ```
 
+- Adicione-o no seu `PATH`. Para isso, adicione o seguinte código no seu `.bashrc` (~/.bashrc)
+
+```
+export VIRTUALENVWRAPPER\_PYTHON=/usr/bin/python3
+export WORKON\_HOME=~/.virtualenvs
+source '/home/SEU_USUÁRIO/.local/bin/virtualenvwrapper.sh'
+```
+
+- Dê um source no `.bashrc`
+
+```
+source ~/.bashrc
+```
+
+> Certifique-se de alterar `SEU_USUARIO` pelo nome do seu usuário.
+
 2.  Clone esse repositório
 
 ```
@@ -43,7 +59,7 @@ cd esp8266_course
 ls /dev/ | grep ttyS{número da porta COM}$
 ```
 
-Por exemplo, se minha porta é a COM4:
+Por exemplo, se minha porta é a `COM4`:
 
 ```
 ls /dev/ | grep ttyS4$
