@@ -40,7 +40,13 @@ cd esp8266_course
 4.  Confira se seu computador reconheceu o dispositivo:
   
 ```
-ls /dev/ | grep tty{porta_com}
+ls /dev/ | grep ttyS{número da porta COM}$
+```
+
+Por exemplo, se minha porta é a COM4:
+
+```
+ls /dev/ | grep ttyS4$
 ```
 
 >  A porta COM padrão é `USB0`, i.e. `/dev/ttyUSB0`
@@ -52,7 +58,7 @@ ls /dev/ | grep tty{porta_com}
 5.  Dê permissões de leitura/escrita na porta:
 
 ```
-sudo chmod 776 /dev/tty{porta_com}
+sudo chmod 776 /dev/ttyS{número da porta COM}
 ```
 
 6.  Crie uma virtualenv aqui 
@@ -69,7 +75,7 @@ pip install esptool
 8.  Realize um teste para ler o `MAC ADDRESS` do dispositivo
 
 ```
-esptool.py -p /dev/tty{porta_com} -b 115200 read_mac
+esptool.py -p /dev/ttyS{número da porta COM} -b 115200 read_mac
 ```
 
 > Caso o teste não seja bem sucedido, revise a porta utilizada e o procedimento de instalação
@@ -77,13 +83,13 @@ esptool.py -p /dev/tty{porta_com} -b 115200 read_mac
 9.  Formate a FlashROM do dispositivo
 
 ```
-esptool.py -p /dev/ttyS{porta_com} -b 115200 erase\_flash -> para limpar a flash
+esptool.py -p /dev/ttyS{número da porta COM} -b 115200 erase\_flash -> para limpar a flash
 ```
 
 10. Instale o firmware (demais imagens podem ser acessadas em: http://micropython.org/download#esp8266)
   
 ```
-  esptool.py -p /dev/ttyS# -b 115200 write\_flash --flash\_size=detect -fm qio 0 bin/esp8266-20180718-v1.9.4-272-g46091b8a.bin
+  esptool.py -p /dev/ttyS{número da porta COM} -b 115200 write\_flash --flash\_size=detect -fm qio 0 bin/esp8266-20180718-v1.9.4-272-g46091b8a.bin
 ```
 
 > É altamente recomendado baixar o binário diretamente da [fonte oficial] (http://micropython.org/download#esp8266)
