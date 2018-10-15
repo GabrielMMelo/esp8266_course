@@ -80,7 +80,7 @@ sudo chmod 776 /dev/ttyS{número da porta COM}
 
 6.  Crie uma virtualenv aqui 
 ```
-mkvirtualenv esp8266    #se estiver usando virtualenvwrapper
+mkvirtualenv esp8266-esptool    #se estiver usando virtualenvwrapper
 ```
 
 7.  Então instale a ferramenta esptool.py para upload e reset do firmware
@@ -114,7 +114,7 @@ esptool.py -p /dev/ttyS{número da porta COM} -b 115200 erase\_flash -> para lim
 11.  Criar outra virtualenv aqui
 
 ```
-mkvirtualenv esp8266-mpfshell
+mkvirtualenv esp8266-mpfshell       # Se estiver usando virtualenvwrapper
 ```
 
 12. Clone o projeto mpfshell
