@@ -38,7 +38,7 @@ sudo apt install python3-pip
 pip3 install virtualenv
 ```
 
-- virtualenvwrapper (opcional, mas facilita sua vida :) )
+- virtualenvwrapper (facilita sua vida 😁))
 ```
 pip3 install virtualenvwrapper
 ```
@@ -96,8 +96,9 @@ sudo chmod 776 /dev/ttyS{número da porta COM}
 ```
 
 6.  Crie uma virtualenv aqui 
+
 ```
-mkvirtualenv esp8266-esptool    #se estiver usando virtualenvwrapper
+mkvirtualenv esp8266-esptool
 ```
 
 7.  Então instale a ferramenta esptool.py para upload e reset do firmware
@@ -120,37 +121,38 @@ esptool.py -p /dev/ttyS{número da porta COM} -b 115200 read_mac
 esptool.py -p /dev/ttyS{número da porta COM} -b 115200 erase\_flash 
 ```
 
-10. Instale o firmware
+10. Faça o download do binário do firmware
+
+```
+wget http://micropython.org/resources/firmware/esp8266-20180718-v1.9.4-272-g46091b8a.bin -P ./bin
+```
+
+> Foi usada o último Daily build até a data atual (16/10/18), disponível na [fonte oficial](http://micropython.org/download#esp8266)
+
+11. Instale o firmware
   
 ```
   esptool.py -p /dev/ttyS{número da porta COM} -b 115200 write\_flash --flash\_size=detect -fm qio 0 bin/esp8266-20180718-v1.9.4-272-g46091b8a.bin
 ```
 
-> É altamente recomendado baixar o binário diretamente da [fonte oficial](http://micropython.org/download#esp8266)
 
-11.  Criar outra virtualenv aqui
-
-```
-mkvirtualenv esp8266-mpfshell       # Se estiver usando virtualenvwrapper
-```
-
-12. Clone o projeto mpfshell
+12.  Criar outra virtualenv aqui
 
 ```
-git clone https://github.com/wendlers/mpfshell 
+mkvirtualenv esp8266-mpfshell
+```
+
+13. Clone o projeto mpfshell
+
+```
+git clone https://github.com/GabrielMMelo/mpfshell 
 cd mpfshell
 ```
 
-13. Instale as dependências
+14. Instale as dependências
 
 ```
 pip install -r requirements.txt
-```
-
-14. Altere a versão do módulo `pyserial` para a `3.1`
-
-```
-pip install pyserial==3.1
 ```
 
 15. Por fim, instale o mpfsheel
@@ -164,6 +166,12 @@ python setup.py install
 ### mpfshell
   
   É um explorador de arquivos, via shell, para dispositivos _ESP8266_ com Micropython. O módulo permite acesso ao `REPL`, que é um ambiente interativo de acesso ao Micropython.
+    
+  Para executá-lo, certifique-se de estar em **MODO FLASH** e digite:
+
+```
+mpfshell
+```
 
 #### Comandos básicos
 
@@ -173,7 +181,7 @@ python setup.py install
 open ttyS{porta\_com}
 ```
   
-- Lista arquivos/diretórios do diretório corrente do seu computador
+- Lista arquivos/diretórios do diretório corrente do dispositivo (ESP8266)
 
 ```
  ls
@@ -212,7 +220,7 @@ repl
 Saia do `REPL`
 
 ```
-ctrl+[
+ctrl+k
 ```
 
 
