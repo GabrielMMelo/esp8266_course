@@ -156,7 +156,7 @@ pip install pyserial==3.1
 15. Por fim, instale o mpfsheel
 
 ```
-pip install mpfshell
+python setup.py install
 ```
 
  > Antes de iniciar o mpfshell, certifique-se de alterar o modo do dispositivo para **MODO FLASH**. Para isso, desligue o dispositivo, altere a conexão na `GPIO0` para um nível lógico **ALTO** e o ligue novamente.
