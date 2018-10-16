@@ -117,16 +117,16 @@ esptool.py -p /dev/ttyS{número da porta COM} -b 115200 read_mac
 9.  Formate a FlashROM do dispositivo
 
 ```
-esptool.py -p /dev/ttyS{número da porta COM} -b 115200 erase\_flash -> para limpar a flash
+esptool.py -p /dev/ttyS{número da porta COM} -b 115200 erase\_flash 
 ```
 
-10. Instale o firmware (demais imagens podem ser acessadas em: http://micropython.org/download#esp8266)
+10. Instale o firmware
   
 ```
   esptool.py -p /dev/ttyS{número da porta COM} -b 115200 write\_flash --flash\_size=detect -fm qio 0 bin/esp8266-20180718-v1.9.4-272-g46091b8a.bin
 ```
 
-> É altamente recomendado baixar o binário diretamente da [fonte oficial] (http://micropython.org/download#esp8266)
+> É altamente recomendado baixar o binário diretamente da [fonte oficial](http://micropython.org/download#esp8266)
 
 11.  Criar outra virtualenv aqui
 
