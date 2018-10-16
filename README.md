@@ -3,7 +3,13 @@
 
 ### Modos de boot
 
+O ESP8266 possui basicamente três métodos de inicialização:
 
+1- **Modo UART**: O microcontrolador não inicia a leitura da memória flash para execução e aguarda recebimento de dados (como atualização de firmware) pela UART (TX/RX).
+
+2- **Modo Flash**: É o modo onde o MCU realiza a leitura da memória flash e a executa as instruções.
+
+3- **Modo SDIO**: Modo em que é lido de uma memória externa (SD card) as instruções a serem executadas. *Este modo não é interesse de estudo/aplicação do curso*.
 |             | GPIO0      | GPIO2      |   GPIO15 |
 |-------------|------------|------------|----------|
 |   Modo UART | GND        | VCC        | GND      |
