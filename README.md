@@ -10,6 +10,7 @@ O ESP8266 possui basicamente três métodos de inicialização:
 2- **Modo Flash**: É o modo onde o MCU realiza a leitura da memória flash e a executa as instruções.
 
 3- **Modo SDIO**: Modo em que é lido de uma memória externa (SD card) as instruções a serem executadas. *Este modo não é interesse de estudo/aplicação do curso*.
+
 |             | GPIO0      | GPIO2      |   GPIO15 |
 |-------------|------------|------------|----------|
 |   Modo UART | GND        | VCC        | GND      |
