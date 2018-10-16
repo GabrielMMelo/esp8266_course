@@ -1,4 +1,14 @@
 # CURSO ESP8266
+## Especificações técnicas
+
+### Modos de boot
+
+
+|             | GPIO0      | GPIO2      |   GPIO15 |
+|-------------|------------|------------|----------|
+|   Modo UART | GND        | VCC        | GND      |
+|  Modo Flash | VCC        | VCC        | GND      |
+|  Modo SDIO  | DON'T CARE | DON'T CARE | VCC      |
 
 ## Micropython
 
@@ -23,7 +33,7 @@ pip3 install virtualenv
 
 - virtualenvwrapper (opcional, mas facilita sua vida :) )
 ```
-pip 3 install virtualenvwrapper
+pip3 install virtualenvwrapper
 ```
 
 - Adicione-o no seu `PATH`. Para isso, adicione o seguinte código no seu `.bashrc` (~/.bashrc)
@@ -52,7 +62,7 @@ cd esp8266_course
 
 3.  Conecte o ESP8266, via usb, no seu computador.
 
- > Tenha certeza que o dispositivo está em **modo flash**.
+ > Tenha certeza que o dispositivo está em **MODO UART**.
 
 4.  Confira se seu computador reconheceu o dispositivo:
   
@@ -141,6 +151,8 @@ pip install pyserial==3.1
 ```
 pip install mpfshell
 ```
+
+ > Antes de iniciar o mpfshell, certifique-se de alterar o modo do dispositivo para **MODO FLASH**. Para isso, desligue o dispositivo, altere a conexão na `GPIO0` para um nível lógico **ALTO** e o ligue novamente.
 
 ### mpfshell
   
