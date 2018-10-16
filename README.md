@@ -209,6 +209,13 @@ Inicia o `REPL`
 repl
 ```
 
+Saia do `REPL`
+
+```
+ctrl+[
+```
+
+
 ## SDK (_esp-open-sdk_)
 ### Instalação e preparação do ambiente
 1. Clone o repositório do projeto
