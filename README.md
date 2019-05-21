@@ -1,4 +1,8 @@
-# CURSO ESP8266
+# Curso de ESP8266
+[![License: CC BY-ND 4.0](https://img.shields.io/badge/License-CC%20BY--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nd/4.0/)
+
+Curso introdutório ao dispositivo ESP8266 utilizando [MicroPython](https://micropython.org/).
+
 ## Especificações técnicas
 
 ### Modos de boot
@@ -38,7 +42,7 @@ sudo apt install python3-pip
 pip3 install virtualenv
 ```
 
-- virtualenvwrapper (facilita sua vida 😁))
+- virtualenvwrapper (facilita sua vida 😁)
 ```
 pip3 install virtualenvwrapper
 ```
